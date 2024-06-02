@@ -121,7 +121,6 @@ function install_jetbrains_toolbox() {
     run_command 'wget -O /tmp/jetbrains-toolbox.tar.gz -L "https://data.services.jetbrains.com/products/download?platform=linux&code=TBA"'
     run_command "tar -xzf /tmp/jetbrains-toolbox.tar.gz -C /tmp/"
     latest_jetbrains_toolbox=$(ls -1 /tmp/ | grep jetbrains-toolbox- | sort -r | head -n 1)
-    run_command "sudo -k"
     run_command "/tmp/$latest_jetbrains_toolbox/jetbrains-toolbox"
     print_info "JetBrains Toolbox installation completed!"
     echo ""
@@ -179,8 +178,10 @@ function install_docker() {
     run_command "sudo apt-get update -y"
 
     run_command "sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
+
+    # ref: https://docs.docker.com/engine/install/linux-postinstall/
     # run_command "sudo groupadd docker"
     run_command "sudo usermod -aG docker $USER"
-    run_command "newgrp docker"
+    # run_command "newgrp docker"
     print_info "Docker installation completed!"
 }

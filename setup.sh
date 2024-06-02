@@ -8,6 +8,12 @@ DIR_DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$DIR_DOTFILES/scripts/_utils.sh"
 source "$DIR_DOTFILES/scripts/_install.sh"
 
+# check if config file is provided
+if [ $# -eq 0 ]; then
+    print_error "Please provide a config file!"
+    exit 1
+fi
+
 # load config from $1(.config)
 if [ -f "$1" ]; then
     source "$1"
@@ -16,6 +22,11 @@ else
     exit 1
 fi
 
+# check if not root
+if [ "$USER" == "root" ]; then
+    print_error "Please run this script as a non-root user!"
+    exit 1
+fi
 
 # ======== update & upgrade APT packages ========
 update_upgrade_apt_packages
