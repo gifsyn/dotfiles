@@ -178,7 +178,7 @@ function install_docker() {
     run_command "sudo apt-get update -y"
 
     run_command "sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
-    run_command "sudo groupadd docker"
+    # run_command "sudo groupadd docker"
     run_command "sudo usermod -aG docker $USER"
     run_command "newgrp docker"
     print_info "Docker installation completed!"
