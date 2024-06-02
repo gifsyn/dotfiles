@@ -121,6 +121,7 @@ function install_jetbrains_toolbox() {
     run_command 'wget -O /tmp/jetbrains-toolbox.tar.gz -L "https://data.services.jetbrains.com/products/download?platform=linux&code=TBA"'
     run_command "tar -xzf /tmp/jetbrains-toolbox.tar.gz -C /tmp/"
     latest_jetbrains_toolbox=$(ls -1 /tmp/ | grep jetbrains-toolbox- | sort -r | head -n 1)
+    run_command "sudo -k"
     run_command "/tmp/$latest_jetbrains_toolbox/jetbrains-toolbox"
     print_info "JetBrains Toolbox installation completed!"
     echo ""
