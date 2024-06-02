@@ -1,16 +1,12 @@
 #!/bin/bash
 set -u
 
-# check if dotfiles directory in $HOME
-if [ ! -d "$HOME/dotfiles" ]; then
-    # echo "dotfiles directory not found in $HOME"
-    print_error "$HOME/dotfiles directory not found"
-    exit 1
-fi
+# get dotfiles directory path
+DIR_DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # load scrips
-source "$HOME/dotfiles/scripts/_utils.sh"
-source "$HOME/dotfiles/scripts/_install_app.sh"
+source "$DIR_DOTFILES/scripts/_utils.sh"
+source "$DIR_DOTFILES/scripts/_install.sh"
 
 # load config from $1(.config)
 if [ -f "$1" ]; then

@@ -2,7 +2,7 @@
 set -u
 
 # load _utils.sh
-source "$HOME/dotfiles/scripts/_utils.sh"
+source "$DIR_DOTFILES/scripts/_utils.sh"
 
 
 # ======== update & upgrade APT packages ========
@@ -18,7 +18,6 @@ function update_upgrade_apt_packages() {
 # ======== install APT packages ========
 function install_apt_packages() {
     print_info "APT packages installation started..."
-    run_command "sudo apt install -y git"
     run_command "sudo apt install -y vim"
     run_command "sudo apt install -y curl"
     run_command "sudo apt install -y wget"
