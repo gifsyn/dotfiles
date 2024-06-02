@@ -166,6 +166,7 @@ function install_docker() {
         return
     fi
 
+    # ref: https://docs.docker.com/engine/install/ubuntu/
     run_command "sudo apt-get update -y"
     run_command "sudo apt-get install -y ca-certificates curl"
     run_command "sudo install -m 0755 -d /etc/apt/keyrings"
@@ -182,6 +183,6 @@ function install_docker() {
     # ref: https://docs.docker.com/engine/install/linux-postinstall/
     # run_command "sudo groupadd docker"
     run_command "sudo usermod -aG docker $USER"
-    # run_command "newgrp docker"
+    run_command "newgrp docker"
     print_info "Docker installation completed!"
 }
