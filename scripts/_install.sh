@@ -31,6 +31,7 @@ function install_chrome() {
     print_info "Chrome installation started..."
     if command -v google-chrome &> /dev/null; then
         print_info "Chrome already installed!"
+        echo ""
         return
     fi
 
@@ -46,6 +47,7 @@ function install_edge() {
     print_info "Edge installation started..."
     if command -v microsoft-edge &> /dev/null; then
         print_info "Edge already installed!"
+        echo ""
         return
     fi
 
@@ -60,6 +62,7 @@ function install_brave() {
     print_info "Brave installation started..."
     if command -v brave-browser &> /dev/null; then
         print_info "Brave already installed!"
+        echo ""
         return
     fi
 
@@ -78,6 +81,7 @@ function install_vscode() {
     print_info "VSCode installation started..."
     if command -v code &> /dev/null; then
         print_info "VSCode already installed!"
+        echo ""
         return
     fi
 
@@ -93,6 +97,7 @@ function install_vscode_insiders() {
     print_info "VSCode Insiders installation started..."
     if command -v code-insiders &> /dev/null; then
         print_info "VSCode Insiders already installed!"
+        echo ""
         return
     fi
 
@@ -108,6 +113,7 @@ function install_jetbrains_toolbox() {
     print_info "JetBrains Toolbox installation started..."
     if command -v jetbrains-toolbox &> /dev/null; then
         print_info "JetBrains Toolbox already installed!"
+        echo ""
         return
     fi
 
@@ -126,6 +132,7 @@ function install_slack() {
     print_info "Slack installation started..."
     if command -v slack &> /dev/null; then
         print_info "Slack already installed!"
+        echo ""
         return
     fi
 
@@ -144,7 +151,7 @@ function install_discord() {
         return
     fi
 
-    run_command 'wget -O /tmp/slack.deb -L "https://discord.com/api/download?platform=linux&format=deb"'
+    run_command 'wget -O /tmp/discord.deb -L "https://discord.com/api/download?platform=linux&format=deb"'
     run_command "sudo apt install -y /tmp/discord.deb"
     print_info "Discord installation completed!"
     echo ""
