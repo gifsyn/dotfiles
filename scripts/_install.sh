@@ -148,6 +148,7 @@ function install_discord() {
     print_info "Discord installation started..."
     if command -v discord &> /dev/null; then
         print_info "Discord already installed!"
+        echo ""
         return
     fi
 
@@ -163,6 +164,7 @@ function install_docker() {
     print_info "Docker installation started..."
     if command -v docker &> /dev/null; then
         print_info "Docker already installed!"
+        echo ""
         return
     fi
 
