@@ -34,28 +34,6 @@ if [ $? -ne 0 ]; then
 fi
 echo ""
 
-# ======== update & upgrade APT packages ========
-print_info "\e[96mAPT packages updating & upgrading started...\e[0m"
-print_info "\e[96msudo apt update -y\e[0m"
-sudo apt update -y
-print_info "\e[96msudo apt upgrade -y\e[0m"
-sudo apt upgrade -y
-print_info "\e[96mAPT packages updating & upgrading completed!\e[0m"
-echo ""
-
-# -------- install APT packages --------
-print_info "\e[96mAPT packages installation started...\e[0m"
-sudo apt install -y \
-    git \
-    vim \
-    curl \
-    wget \
-    gcc \
-    g++ \
-    cmake
-print_info "\e[96mAPT packages installation completed!\e[0m"
-echo ""
-
 # ======== pyenv ========
 # ref:https://github.com/pyenv/pyenv
 # ref:https://github.com/pyenv/pyenv/wiki
@@ -92,52 +70,3 @@ nvm install --lts=iron --latest-npm
 nvm alias default lts/hydrogen
 print_info "\e[96mNode.js installation completed!\e[0m"
 echo ""
-
-# ======== Docker ========
-# ref: https://docs.docker.com/engine/install/ubuntu/
-print_info "\e[96mDocker installation started...\e[0m"
-
-# -------- Uninstall old versions --------
-# print_info "\e[96mUninstall old versions\e[0m"
-# for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
-
-# -------- Uninstall Docker Engine --------
-# print_info "\e[96mUninstall Docker Engine\e[0m"
-# sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
-# sudo rm -rf /var/lib/docker
-# sudo rm -rf /var/lib/containerd
-
-# -------- Install using the apt repository --------
-print_info "\e[96mInstall using the apt repository\e[0m"
-
-sudo apt-get update -y
-sudo apt-get install ca-certificates curl -y
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update -y
-
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-
-print_info "\e[96mDocker installation completed!\e[0m"
-echo ""
-
-# ref: https://docs.docker.com/engine/install/linux-postinstall/
-print_info "\e[96mDocker post-installation steps started...\e[0m"
-
-# -------- Manage Docker as a non-root user --------
-sudo groupadd docker || true
-sudo usermod -aG docker $USER
-# newgrp docker
-newgrp docker << NEWGRP
-NEWGRP
-
-print_info "\e[96mDocker post-installation steps completed!\e[0m"
-
-cd $current_dir
-exec $SHELL -l
