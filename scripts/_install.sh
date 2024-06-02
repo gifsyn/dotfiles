@@ -185,7 +185,6 @@ function install_docker() {
     # ref: https://docs.docker.com/engine/install/linux-postinstall/
     # run_command "sudo groupadd docker"
     run_command "sudo usermod -aG docker $USER"
-    run_command "newgrp docker << EOF\
-    << EOF"
+    run_command "sudo systemctl restart docker"
     print_info "Docker installation completed!"
 }
