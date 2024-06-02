@@ -111,7 +111,7 @@ function install_vscode_insiders() {
 # ======== JetBrains Toolbox ========
 function install_jetbrains_toolbox() {
     print_info "JetBrains Toolbox installation started..."
-    if command -v jetbrains-toolbox &> /dev/null; then
+    if [ -d $HOME/.local/share/JetBrains/Toolbox ]; then
         print_info "JetBrains Toolbox already installed!"
         echo ""
         return
@@ -185,6 +185,7 @@ function install_docker() {
     # ref: https://docs.docker.com/engine/install/linux-postinstall/
     # run_command "sudo groupadd docker"
     run_command "sudo usermod -aG docker $USER"
-    run_command "newgrp docker"
+    run_command "newgrp docker << EOF\
+    << EOF"
     print_info "Docker installation completed!"
 }
