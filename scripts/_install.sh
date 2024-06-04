@@ -29,6 +29,12 @@ function install_apt_packages() {
 # ======== install input method ========
 function install_input_method() {
     print_info "Input method installation started..."
+    if command -v fcitx &> /dev/null; then
+        print_info "Input method already installed!"
+        echo ""
+        return
+    fi
+
     run_command "sudo apt install -y language-pack-ja"
     run_command "sudo apt install -y fcitx-mozc"
     run_command "im-config -n fcitx"
