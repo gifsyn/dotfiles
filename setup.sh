@@ -35,7 +35,9 @@ update_upgrade_apt_packages
 install_apt_packages
 
 # ======== install input method ========
-install_input_method
+if "${INSTALL_INPUT_METHOD}"; then
+    install_input_method
+fi
 
 # ======== install Chrome ========
 if "${INSTALL_CHROME}"; then
