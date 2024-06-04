@@ -23,6 +23,10 @@ $ bash setup.sh ubuntu-22.04.conf
 - curl
 - wget
 
+### Input Method
+
+- fcitx-mozc
+
 ### Web Browsers
 
 - Google Chrome

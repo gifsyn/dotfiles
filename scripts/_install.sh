@@ -26,6 +26,23 @@ function install_apt_packages() {
 }
 
 
+# ======== install input method ========
+function install_input_method() {
+    print_info "Language tools installation started..."
+    run_command "sudo apt install -y language-pack-ja"
+    run_command "sudo apt install -y fcitx-mozc"
+    run_command "im-config -n fcitx"
+    run_command "ibus exit"
+    run_command "fcitx-autostart 2>/dev/null"
+    run_command "sed -i 's/mozc:False/mozc:True/g' ~/.config/fcitx/profile"
+    run_command "pkill fcitx"
+    run_command "fcitx-autostart 2>/dev/null"
+    print_warn "Please reboot to apply the changes!"
+    print_info "Language tools installation completed!"
+    echo ""
+}
+
+
 # ======== Chrome ========
 function install_chrome() {
     print_info "Chrome installation started..."
@@ -185,6 +202,6 @@ function install_docker() {
     # ref: https://docs.docker.com/engine/install/linux-postinstall/
     # run_command "sudo groupadd docker"
     run_command "sudo usermod -aG docker $USER"
-    print_warn "Please relogin, reboot or run 'newgrp docker' to apply the group changes!"
+    print_warn "Please relogin, reboot or run 'newgrp docker' to apply the changes!"
     print_info "Docker installation completed!"
 }

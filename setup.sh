@@ -34,6 +34,9 @@ update_upgrade_apt_packages
 # ======== install APT packages ========
 install_apt_packages
 
+# ======== install input method ========
+install_input_method
+
 # ======== install Chrome ========
 if "${INSTALL_CHROME}"; then
     install_chrome
